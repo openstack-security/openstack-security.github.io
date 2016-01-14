@@ -1,0 +1,12 @@
+
+https://openstack-securitygithub.io/SecurityGuidance
+https://openstack-securitygithub.io/archive
+https://openstack-securitygithub.io/atom.xml
+https://openstack-securitygithub.io/categories
+https://openstack-securitygithub.io/
+https://openstack-securitygithub.io/pages
+https://openstack-securitygithub.io/rss.xml
+https://openstack-securitygithub.io/sitemap.txt
+https://openstack-securitygithub.io/tags
+
+https://openstack-securitygithub.io/lessons/2011/12/29/jekyll-introduction
