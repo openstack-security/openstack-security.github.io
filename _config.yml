@@ -1,0 +1,21 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: OpenStack Security
+email: hyakuhei@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  A blog created by members of the OpenStack Security Project
+  to update readers on project progress, security issues,
+  advisories and general security curiosities.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://yourdomain.com" # the base hostname & protocol for your site
+twitter_username: hyakuhei
+github_username:  hyakuhei
+
+# Build settings
+markdown: kramdown
