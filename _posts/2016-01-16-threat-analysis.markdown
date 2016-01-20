@@ -6,7 +6,7 @@ categories: collaboration
 tags: mid-cycle collaboration mitaka threat analysis
 author: "hyakuhei @ Hewlett Packard Enterprise"
 ---
-Threat analysis is hard, at [Hewlett Packard Enterprise](http://www8.hp.com/us/en/cloud/helion-portfolio.html#!&pd1=2&pd3=2&pd5=2)
+Threat analysis is hard. At [Hewlett Packard Enterprise](http://www8.hp.com/us/en/cloud/helion-portfolio.html#!&pd1=2&pd3=2&pd5=2)
 we have a small team of people dedicated to generating architecture
 documentation and leading threat analysis sessions. We conduct threat
 analysis in two phases. The first phase is to create architecture
@@ -22,9 +22,9 @@ and [Hewlett Packard Enterprise](http://www8.hp.com/us/en/cloud/helion-portfolio
 are prepared to contribute both expertise and existing architecture
 diagrams to the OpenStack Security Project.
 
-Doug Chivers, (dg__ on irc), took an old high level threat analysis
-diagram from the HP archives and annotated it (red text) to help explain
-a number of the properties that go into a simple TA diagram.
+David Graves took an old high level threat analysis diagram from the HP
+archives and annotated it (red text) to help explain a number of the
+properties that go into a simple TA diagram.
 
 ![Nova threat analysis diagram](https://review.openstack.org/cat/220712%2C3%2Csecurity-threat-analysis/source/figures/Template_Architecture-diagram.png%5E0)
 
@@ -35,7 +35,7 @@ interfaces etc with the aim of finding vulnerabilities in the system
 and documenting security best practice.
 
 At HPE we aim to conduct analysis sessions in 2-3 hours but it's not
-uncommon for reviews to take several times as long and this time does
+uncommon for reviews to take much longer and this time does
 not include the work taken to generate the architecture documentation,
 which is often several days of effort.
 
