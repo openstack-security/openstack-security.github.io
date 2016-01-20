@@ -55,7 +55,8 @@ There will of course be significant followup work from this week's
 efforts and I'm glad to share that we have commitment from Redhat, IBM,
 HPE, Rackspace and others.
 
-Our aim is to create a methodolgoy that:
+Our aim is to create a methodology that:
+
 * Identifies all entry points into the system
 * Identifies all the assets that are at risk
 * Identifies where data is persisted

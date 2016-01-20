@@ -88,7 +88,6 @@ services and libraries that provide cryptographic functionality to
 applications).
 
 ### Usage within OpenStack
-
 Thankfully the indomitable [Major Hayden](https://major.io/)
 of Rackspace has already written up a mailing list
 [post](http://lists.openstack.org/pipermail/openstack-dev/2016-January/084213.html)
@@ -101,6 +100,7 @@ threat analysis that can be utilized by developers. This is the subject
 of it's own post [here](some-post-markup)
 
 Our aim is to create a methodology that:
+
 * Identifies all entry points into the system
 * Identifies all the assets that are at risk
 * Identifies where data is persisted
