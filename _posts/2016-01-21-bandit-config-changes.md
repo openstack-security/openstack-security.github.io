@@ -9,7 +9,7 @@ author: "tmcpeak @ Hewlett Packard Enterprise"
 ## The problem - current Bandit config is... not great
 One of the most consistent pieces of feedback we've gotten is that Bandit's
 config files are unwieldy and painful to use.  Config files in Bandit have
-traditionally been used for several disjoint things, but the most common use
+traditionally been used for a few unrelated things, but the most common use
 was for a project to specify which tests they want to run.
 
 If a project wants to start using Bandit today they typically create a copy
@@ -21,7 +21,7 @@ should have to be for a project that adopted Bandit several versions ago to
 find out what new plugins are available.  Listing out plugins by name in the
 config file is also tedious and error prone.
 
-![Rage](assets/rageguy.jpg)
+![Rage](https://openstack-security.github.io/assets/rageguy.jpg)
 
 Config files have also traditionally contained all of the settings for each
 plugin.  The idea was that projects may want to tune plugins in certain ways,
@@ -45,7 +45,7 @@ or ID.  We believe profile files will be useful for workflows like penetration
 testing, where you want to run the same set of tests and don't want to have
 to copy-paste commands.
 
-![Happy](assets/happyguy.jpg)
+![Happy](https://openstack-security.github.io/assets/happyguy.jpg)
 
 What about settings?  Settings are now built into the plugins themselves.
 We'll have commands that expose the configurable settings, but most users
