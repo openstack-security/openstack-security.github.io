@@ -22,9 +22,9 @@ and [Hewlett Packard Enterprise](http://www8.hp.com/us/en/cloud/helion-portfolio
 are prepared to contribute both expertise and existing architecture
 diagrams to the OpenStack Security Project.
 
-David Graves took an old high level threat analysis diagram from the HP
-archives and annotated it (red text) to help explain a number of the
-properties that go into a simple TA diagram.
+HPE's David Graves took an old high level threat analysis diagram from
+the HP archives and annotated it (red text) to help explain a number of
+the properties that go into a simple TA diagram.
 
 ![Nova threat analysis diagram](https://review.openstack.org/cat/220712%2C3%2Csecurity-threat-analysis/source/figures/Template_Architecture-diagram.png%5E0)
 
@@ -43,9 +43,9 @@ During the mid-cycle we worked to document a lightweight methodology for
 threat analysis. The objective is to create a methodology that would
 allow project teams to document their own reference architecture during
 one-two mid-cycle working sessions. We do not expect that this
-methodology will be as complete as those mutli-day efforts that HPE and
-Rackspace undertake but it will serve several important purposes. It
-will define a standard for documenting reference architectures for
+methodology will be as complete as those multi-day efforts that HPE and
+Rackspace undertake but it will still serve several important purposes.
+It will define a standard for documenting reference architectures for
 OpenStack projects and provide a solid base for future, iterative work
 on threat analysis.
 
