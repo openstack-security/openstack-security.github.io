@@ -21,7 +21,7 @@ should have to be for a project that adopted Bandit several versions ago to
 find out what new plugins are available.  Listing out plugins by name in the
 config file is also tedious and error prone.
 
-![Rage](https://openstack-security.github.io/assets/rageguy.jpg)
+![Rage](http://s11.postimg.org/3xmirb5j7/Rage_Guy_T_Shirt_thumb.jpg)
 
 Config files have also traditionally contained all of the settings for each
 plugin.  The idea was that projects may want to tune plugins in certain ways,
@@ -45,7 +45,7 @@ or ID.  We believe profile files will be useful for workflows like penetration
 testing, where you want to run the same set of tests and don't want to have
 to copy-paste commands.
 
-![Happy](https://openstack-security.github.io/assets/happyguy.jpg)
+![Happy](http://s9.postimg.org/8d00xy2r3/happy_guy.jpg)
 
 What about settings?  Settings are now built into the plugins themselves.
 We'll have commands that expose the configurable settings, but most users
