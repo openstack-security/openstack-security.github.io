@@ -114,4 +114,5 @@ the [Security Mid-Cycle]({% post_url 2016-01-15-mitaka-midcycle %}) the
 indomitable [Major Hayden](https://major.io/) of Rackspace has already
 written up a mailing list [post](http://lists.openstack.org/pipermail/openstack-dev/2016-January/084213.html)
 and an accompanying [etherpad](https://etherpad.openstack.org/p/openstack-ansible-tls-improvement)
-discussing how TLS might be improved in [OpenStack Ansible](https://github.com/openstack/openstack-ansible).
+discussing how TLS might be improved in [OpenStack Ansible](https://github.com/openstack/openstack-ansible)
+using anchor.

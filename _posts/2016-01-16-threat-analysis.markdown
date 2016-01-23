@@ -67,3 +67,11 @@ Our aim is to create a methodology that:
 * Documents the impact of degrading controls
 
 The [etherpad](https://etherpad.openstack.org/p/security-mitaka-midcycle-threatanalysis) for threat analysis contains our current notes on this project.
+
+## Next Steps
+The next step is to iterate on the process by applying first to a simple
+project like [Anchor]({% post_url 2016-01-20-ephemeral-pki %}) before
+collaborating with [Barbican](https://github.com/openstack/barbican) and
+[Keystone](https://github.com/openstack/keystone) to provide Threat
+Analysis documentation that will help to secure those projects and
+provide a solid base for deeper security analysis in the future.
