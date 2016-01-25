@@ -16,9 +16,9 @@ If a project wants to start using Bandit today they typically create a copy
 of the config file, define a profile within the config file that lists which
 tests should be included, and then run Bandit with that profile.  There are a
 few problems with this approach though.  There really haven't been any good
-ways to find out what all of the plugin options are.  So it's harder than it
+ways to find out what all of the plugin options are so it's harder than it
 should have to be for a project that adopted Bandit several versions ago to
-find out what new plugins are available.  Listing out plugins by name in the
+know which new plugins are available.  Listing out plugins by name in the
 config file is also tedious and error prone.
 
 ![Rage](http://s11.postimg.org/3xmirb5j7/Rage_Guy_T_Shirt_thumb.jpg)
@@ -30,7 +30,7 @@ with the ability to change a few values if required.
 
 These and other frustrations with the current Bandit config have led us to
 rethink Bandit configs entirely and we believe we've come up with something
-that we believe will make it far easier to use.
+that will make it far easier to use.
 
 ## The solution - get rid of config for most users
 We're doing a few things to remove the need for config.  All plugins will have
