@@ -1,0 +1,88 @@
+---
+layout: post
+title:  "Applying threat analysis to Anchor"
+date:   2016-02-07
+categories: threatanalysis
+tags: anchor ephemeral pki certificates
+author: "hyakuhei @ Hewlett Packard Enterprise"
+---
+As a followup to my previous post on [Threat Analysis]({% post_url 2016-01-16-threat-analysis %})
+I started working through a simple TA process for [Anchor]({% post_url 2016-01-20-ephemeral-pki %})
+with a view to seeing how long the process takes as well as trying to
+understand how we should document the steps that are required. I think
+we need to end up with a point by point guide to TA, some simple process
+that is repeatable and somewhat deterministic.
+
+A good measure of the quality of this documentation would be to have two
+groups of developers from the same project attempt to perform TA in
+parallel and compare the results.
+
+We are still working on the process as can been seen from this review.
+
+#Reference architectures
+One of the problems when trying to work out how to create threat
+analysis documentation for OpenStack services is that they can be
+configured in so many different ways. Anchor is probably one of the
+least complicated services in the ecosystem, capable of being deployed
+in a completely stand alone, single service, single host configuration.
+However, this is not how it's intended to be used 'in production'. The
+expectation is that developers use best judgement on what the best
+practice architecture should look like, what components should be
+present and what should be optional or recommended. You can see this in
+the architecture diagram for Anchor below. I decided to represent the
+system in an HA configuration but with LDAP and the audit queue as
+optional components. The uses, threats to and protections for the
+optional components will be included in the TA but the notation will
+highlight that Anchor does not explicitly require these services to run.
+
+#Anchor components
+In this diagram you can see that a typical Anchor deployment typically
+consists of just a load balancer, a couple of Anchor instances and the
+Anchor configuration file which is stored on disk.
+![Anchor Component Diagram](https://drive.google.com/uc?export=download&id=0B0osRPn3qBq5RmVnWXRvRnVKYXM)
+
+The interface list in this diagram doesn't contain a lot of information
+but it's really just there for a quick reference.
+
+#Component and Interface lists
+A component list is particularly useful for large projects as it helps
+keep track of all the different parts of a system under review.
+
+| ID | Name | Purpose | Persists Sensitive Data | Exposed Protocols |
+| -- | ---- | ------- | ----------------------- | ----------------- |
+| c1 | Client System | Any server or service that requires a certificate for operations. | Yes - stores certificates from Anchor as well as it's own private keys. | TLS / 443 |
+| c2 | Load Balancer | Not strictly required for Anchor but strongly advisable. This component balances traffic between two or more instances of Anchor | No - Passes data between Anchor instances and clients. | TLS / 443 |
+| c3 | Anchor Instance | To validate certificate requests and generate certificates based on request data. |  Yes - Anchor reads configuration data from disk but does not store anything locally other than log caches when the audit stream isn't available | TLS / 443 |
+| c4 | Configuration File | To store configuration information |Anchor never writes to this file. It reads lots of sensitive data from the file including validation rules and credentials | Filesystem DAC |
+| c5 | Audit Queue | To receive, process and forward log data from Anchor instances. | Anchor emits no sensitive log data. Audit data contains: which host was issued a certificate, the type of authentication used and the validation rules that were met.  Depending on configuration the audit stream data may be logged in it's pre-processed form. Alternatively the representation within a target log management or SEIM application my be persisted. | Unsure |
+| c6 | LDAP Server | Anchor can use LDAP to simply authenticate a request or can use group membership as part of validation rules. I.E only a user in the "Nova Engineering" group is allowed to generate certificates matching the "*.compute.cloud" schema | LDAP undoubtedly stores sensitive data however no sensitive data is persisted in LDAP by Anchor or by any side affect of Anchor running. | Unsure |
+
+
+The component list describes the entities in the system and how they
+might process and persist data. The interface list describes how these
+components communicate with each other.
+
+| ID | Name | Purpose | Protocol(s)| Confidentiality | Integrity | Availability | Boundaries |
+| -- | ---- | ------- | ---------- | --------------- | --------- | ------------ | ---------- |
+| 1-2 | Client to Load Balancer | The client connection to Anchor. Although this goes to a load balancer first, the client perception is that they are connecting directly with an Anchor instance | REST or CMC - both over TLS | Access credentials are passed over this connection. The credentials are not encrypted but the connection is. | Integrity of requests is important and protected by TLS. | Availability of 2 is important - this is why a LB is used in front of Anchor. Potentially two LB could be deployed with a DNS round-robin configuration | Public / Edge Network -> Control Plane |
+| 3-4 | Load Balancer to Anchor Instance | This is the main communication channel for Anchor operations. The data from the client is passed to anchor over TLS from the load balancer. | REST or CMC - both over TLS (whatever was provided over 1-2) | See 1-2 | See 1-2 | See 1-2 | Public Facing / Edge Network -> Internal Network / Control Plane |
+| 5 | Disk Read | Anchor reads configuration data from disk. This data can contain AD credentials, validation rules etc. Appropriate DAC and MAC should be set | FS Reads | High | High | Low/Med - Anchor requires access to this file only when the service starts | Entirely within control plane |
+| 6 | Audit Stream | To log events from Anchor | CADF | Low - no sensitive data in logs although in aggregate logs could provide an attacker with an understanding on the layout of the infrastructure | High | Medium | Within control plane |
+| 7 | LDAP connection | To authenticate users and verify that the group they reside in matches what's required in validation rules | LDAP over TLS | High | High | High | Internal Network / Control Plane -> External corporate network |
+
+
+At this point in the review, by way of creating the above diagram and
+tables we should have had a thoughtful discussion on:
+
+- What a reference architecture looks like and what parts are optional
+- The interfaces between components, what data travels over those
+interfaces
+- The C.I.A requirements for each interface
+- The protocols used
+
+The next step in the process is to generate sequence diagrams for a
+selection of common or important operations within the system under
+review. This is again where the process relies on the best judgement of
+the reviewers - to generate enough sequence diagrams to map out major
+functionality or to ensure that the various interfaces in the reference
+architecture are explored.
