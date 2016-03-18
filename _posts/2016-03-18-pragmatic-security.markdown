@@ -70,7 +70,8 @@ a few additional recommended steps. Additionally, the Security Team will also
 interpret and maintain the Security Policy.
 
 
-## ![Secure Architecture](http://s27.postimg.org/3xtqknmdv/th_1.jpg)
+![Secure Architecture](http://s27.postimg.org/3xtqknmdv/th_1.jpg)
+## Secure Architecture
 
 The Security team works with each service team to identify the best practice
 approach for a given service, the threat landscape, and secure methods to any
@@ -105,7 +106,8 @@ proper versions of packages and utilities and bring each host up into a known
 hardened state.
 
 
-## ![Regular Review](http://s12.postimg.org/t6vf6afft/image.jpg)
+![Regular Review](http://s12.postimg.org/t6vf6afft/image.jpg)
+## Regular Review
 
 Additionally, the policies, configurations, and results of the above should be
 validated on a regular cadence. Scheduling regular reviews for each - such as
