@@ -7,7 +7,7 @@ tags: security openstack
 author: "sicarie @ Hewlett Packard Enterprise"
 ---
 
-![Pragmatic Security: When your PoC Goes into Production]()
+![Pragmatic Security: When your PoC Goes into Production](http://s22.postimg.org/mruu1gim9/cloud_computing_button_blue.jpg)
 
 ## Creating a Cloud Security Program
 
@@ -88,7 +88,7 @@ introduces it to the rest of the security team and stakeholders to get addtional
 points of view of exposure and possible exploit vectors for review.
 
 
-## Static Analysis
+## [Static Analysis](http://s12.postimg.org/t6vf6afft/image.jpg)
 
 On a per-application basis, the appropriate static code analysis tool can be
 selected and included in the gate so that "low hanging fruit" can be identified
@@ -105,7 +105,7 @@ proper versions of packages and utilities and bring each host up into a known
 hardened state.
 
 
-## Regular Review
+## [Regular Review](http://s27.postimg.org/3xtqknmdv/th_1.jpg)
 
 Additionally, the policies, configurations, and results of the above should be
 validated on a regular cadence. Scheduling regular reviews for each - such as
