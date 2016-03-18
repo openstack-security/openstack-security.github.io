@@ -70,7 +70,7 @@ a few additional recommended steps. Additionally, the Security Team will also
 interpret and maintain the Security Policy.
 
 
-## Secure Architecture
+## ![Secure Architecture](http://s27.postimg.org/3xtqknmdv/th_1.jpg)
 
 The Security team works with each service team to identify the best practice
 approach for a given service, the threat landscape, and secure methods to any
@@ -88,7 +88,7 @@ introduces it to the rest of the security team and stakeholders to get addtional
 points of view of exposure and possible exploit vectors for review.
 
 
-## [Static Analysis](http://s12.postimg.org/t6vf6afft/image.jpg)
+## Static Analysis
 
 On a per-application basis, the appropriate static code analysis tool can be
 selected and included in the gate so that "low hanging fruit" can be identified
@@ -105,7 +105,7 @@ proper versions of packages and utilities and bring each host up into a known
 hardened state.
 
 
-## [Regular Review](http://s27.postimg.org/3xtqknmdv/th_1.jpg)
+## ![Regular Review](http://s12.postimg.org/t6vf6afft/image.jpg)
 
 Additionally, the policies, configurations, and results of the above should be
 validated on a regular cadence. Scheduling regular reviews for each - such as
