@@ -9,7 +9,7 @@ author: "sicarie @ Hewlett Packard Enterprise"
 
 ![Pragmatic Security: When your PoC Goes into Production]()
 
-# Creating a Cloud Security Program
+## Creating a Cloud Security Program
 
 A common anecdote when looking at OpenStack cloud deployments is that when
 an issue arises - such as with timetables or migrating an application to a
