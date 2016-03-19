@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Pragmatic Security: When Your PoC Goes into Production"
+title:  "An Overview of Incident Response with OpenStack Clouds"
 date:   2016-03-18
 categories: security
 tags: security openstack incident-response
