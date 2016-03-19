@@ -1,8 +1,13 @@
 ---
-header
+layout: post
+title:  "Security in the Gate"
+date:   2016-03-18
+categories: security
+tags: security openstack gate bandit
+author: "sicarie @ Hewlett Packard Enterprise"
 ---
 
-! Title
+! [Title]()
 
 
 ## Intro & Assumptions
