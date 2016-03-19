@@ -1,8 +1,13 @@
 ---
-header
+layout: post
+title:  "Pragmatic Security: When Your PoC Goes into Production"
+date:   2016-03-18
+categories: security
+tags: security openstack incident-response
+author: "sicarie @ Hewlett Packard Enterprise"
 ---
 
-! [Title]()
+! [OpenStack Incident Response]()
 
 ## Initial ideas
 
