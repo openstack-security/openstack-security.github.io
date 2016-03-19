@@ -52,15 +52,16 @@ Different: on isolate, it's cattle so you can just duplicate another of the same
 6. Prevelancy of vulnerability
   * how was the system compromised & does this attack vector exist across multiple systems? Or is this a "one-off" system?
 
-Response:
+## Response
+
 Determine exploit path & associated users/creds
 Revoke privileged access & outstanding sessions
 Invalidate credentials (provision new auth & push to systems; or if systems are sensitive enough, disalble the user)
 
-Review:
+## Review
 keystone token cache
 new users
 new roles (delegated tokens)
 
-Then:
+## Then
 If it's not dmca/similar, identify if vuln is prevalent throughout fleet, and edge control or orchestration update to remediate
