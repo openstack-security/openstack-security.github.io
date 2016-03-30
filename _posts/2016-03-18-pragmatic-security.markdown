@@ -18,9 +18,10 @@ from the schedule. So when your Proof-of-Concept cloud is ready to be
 deployed in Production, there are occasional gaps in the overall security
 and assurance of the environment.
 
-As every environment is different, this will be a "one size fits all" post,
-and it is up to the reader to adapt the recommended Security Software
-Lifcycle Management program to their environment.
+This will be a one size fits all post, considering how each environment
+will vary on mandatory security requirements. It will be up to the reader
+to adapt the recommended Security Software Lifcycle Management program to
+their environment.
 
 
 ## Teams
@@ -67,7 +68,7 @@ The security team will work to build security and assurance through each step
 of the software lifecycle. Traditionally, this is encompassed by host hardening,
 code review, and firewall/network ACLs. In a cloud native environment, there are
 a few additional recommended steps. Additionally, the Security Team will also
-interpret and maintain the Security Policy.
+interpret, maintain, and enforce the Security Policy.
 
 
 ![Secure Architecture](http://s27.postimg.org/3xtqknmdv/th_1.jpg)
