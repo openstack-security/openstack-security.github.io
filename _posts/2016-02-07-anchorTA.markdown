@@ -19,7 +19,8 @@ parallel and compare the results.
 
 We are still working on the process as can been seen from this review.
 
-#Reference architectures
+## Reference architectures
+
 One of the problems when trying to work out how to create threat
 analysis documentation for OpenStack services is that they can be
 configured in so many different ways. Anchor is probably one of the
@@ -35,7 +36,8 @@ optional components. The uses, threats to and protections for the
 optional components will be included in the TA but the notation will
 highlight that Anchor does not explicitly require these services to run.
 
-#Anchor components
+## Anchor components
+
 In this diagram you can see that a typical Anchor deployment typically
 consists of just a load balancer, a couple of Anchor instances and the
 Anchor configuration file which is stored on disk.
@@ -44,9 +46,71 @@ Anchor configuration file which is stored on disk.
 The interface list in this diagram doesn't contain a lot of information
 but it's really just there for a quick reference.
 
-#Component and Interface lists
+## Security Requirements
+
+For each component we like to run through a list of basic security
+considerations these are at a minimum **Confidentiality**, **Integrity** and
+**Availability** (C.I.A) - bonus points are awarded for including
+**Authorization**, **Authentication** and **Auditability**.
+
+**Artefact** - Generic term for a given component, interface or asset.
+
+- **Confidentiality:** Does this artefact include or access information that
+should be kept secret - could this information be used to compromise the
+security or integrity of the system. In the context of the
+Anchor project, the on disk config, validators and AuthN information stored
+on-disk (c4) and read through interface (5) contain confidential information.
+- **Integrity:** Does this artefact include or access information that it's
+critical remains correct? Often it is the case that components that have strong
+confidentiality requirements will also have strong integrity requirements but
+there are times where strong integrity requirements can exist without
+confidentiality. Consider a time signal that a service relies on for
+synchronisation - the time of day is in no way confidential or sensitive
+however it's critical to the process that the integrity of the time signal is
+preserved.
+- **Availability:** Will the system overall fail if this component, interface or
+asset is momentarily unavailable - what is the impact of a potential failure?
+- **Authentication:** Does the artefact involve or require authentication for
+some or all operations - what is the impact of the authentication system
+failing.
+- **Authorization:** Once an entity has authenticated (the system knows the
+  identity of the user) - is it authorized to perform an action. What happens
+  if an authorization failure allows all users to perform actions?
+- **Auditability:** Sometimes also considered as **non-repudiation** (I wont go
+  into the difference here) is the ability of the system to maintain a immutable
+  log of operations and events that occurred with a level of granularity that
+  allows an investigator to reconstruct any given series of events.
+
+
+## Discussion / Dissection
+
+At this point in the review it's time to talk about the block diagram. What data
+travels between components and what happens to that data within each component.
+Reviews should consider and capture:
+
+- What a reference architecture looks like and what parts are optional
+- The interfaces between components, what data travels over those
+interfaces
+- The security requirements for each interface
+- The protocols used
+
+The content of this discussion should be used to inform the component and
+interface lists as shown below. Consideration should be given to
+
+### Reference Architecture Validation
+**Does the presented architecture make sense as a reference for future
+deployer?**
+Yes - the block diagram uses dotted line objects to denote optional components.
+These components should be present in a strong and robust deployment of Anchor
+but are not required for a basic / test deployment.
+
+
+## Component list
+
 A component list is particularly useful for large projects as it helps
-keep track of all the different parts of a system under review.
+keep track of all the different parts of a system under review. The component
+list describes the entities in the system and how they might process and
+persist data.
 
 | ID | Name | Purpose | Persists Sensitive Data | Exposed Protocols |
 | -- | ---- | ------- | ----------------------- | ----------------- |
@@ -58,8 +122,10 @@ keep track of all the different parts of a system under review.
 | c6 | LDAP Server | Anchor can use LDAP to simply authenticate a request or can use group membership as part of validation rules. I.E only a user in the "Nova Engineering" group is allowed to generate certificates matching the "*.compute.cloud" schema | LDAP undoubtedly stores sensitive data however no sensitive data is persisted in LDAP by Anchor or by any side affect of Anchor running. | Unsure |
 
 
-The component list describes the entities in the system and how they
-might process and persist data. The interface list describes how these
+
+## Interface List
+
+The interface list describes how these
 components communicate with each other.
 
 | ID | Name | Purpose | Protocol(s)| Confidentiality | Integrity | Availability | Boundaries |
@@ -70,15 +136,6 @@ components communicate with each other.
 | 6 | Audit Stream | To log events from Anchor | CADF | Low - no sensitive data in logs although in aggregate logs could provide an attacker with an understanding on the layout of the infrastructure | High | Medium | Within control plane |
 | 7 | LDAP connection | To authenticate users and verify that the group they reside in matches what's required in validation rules | LDAP over TLS | High | High | High | Internal Network / Control Plane -> External corporate network |
 
-
-At this point in the review, by way of creating the above diagram and
-tables we should have had a thoughtful discussion on:
-
-- What a reference architecture looks like and what parts are optional
-- The interfaces between components, what data travels over those
-interfaces
-- The C.I.A requirements for each interface
-- The protocols used
 
 The next step in the process is to generate sequence diagrams for a
 selection of common or important operations within the system under
