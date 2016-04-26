@@ -70,6 +70,16 @@ however it's critical to the process that the integrity of the time signal is
 preserved.
 - **Availability:** Will the system overall fail if this component, interface or
 asset is momentarily unavailable - what is the impact of a potential failure?
+- **Authentication:** Does the artefact involve or require authentication for
+some or all operations - what is the impact of the authentication system
+failing.
+- **Authorization:** Once an entity has authenticated (the system knows the
+  identity of the user) - is it authorized to perform an action. What happens
+  if an authorization failure allows all users to perform actions?
+- **Auditability:** Sometimes also considered as **non-repudiation** (I wont go
+  into the difference here) is the ability of the system to maintain a immutable
+  log of operations and events that occurred with a level of granularity that
+  allows an investigator to reconstruct any given series of events.
 
 
 ## Discussion / Dissection
