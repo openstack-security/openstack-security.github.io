@@ -86,7 +86,7 @@ We focus on four stages of the threat analysis process:
 - Ask the project architect to summarize the architecture by stepping through
   the architecture block diagram.
 
-![Threat Analysis: Example Architecture Diagram](../assets/Template_Architecture-diagram.png)
+![Threat Analysis: Example Architecture Diagram](http://i.imgur.com/7e1Fuz6.png)
 
 
 
