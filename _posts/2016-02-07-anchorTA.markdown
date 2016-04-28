@@ -41,7 +41,7 @@ highlight that Anchor does not explicitly require these services to run.
 In this diagram you can see that a typical Anchor deployment typically
 consists of just a load balancer, a couple of Anchor instances and the
 Anchor configuration file which is stored on disk.
-![Anchor Component Diagram](https://drive.google.com/uc?export=download&id=0B0osRPn3qBq5RmVnWXRvRnVKYXM)
+![Anchor Component Diagram](https://drive.google.com/uc?export=download&id=0B0osRPn3qBq5YWEyWGNZemVGMzQ)
 
 The interface list in this diagram doesn't contain a lot of information
 but it's really just there for a quick reference.
@@ -143,3 +143,57 @@ review. This is again where the process relies on the best judgement of
 the reviewers - to generate enough sequence diagrams to map out major
 functionality or to ensure that the various interfaces in the reference
 architecture are explored.
+
+## Sequence Diagrams
+
+As a brief reminder to the reviewer, sometimes it's useful to include a simplified
+diagram that explains the general principles of a system such as the one below.
+
+![Simplified Anchor Diagram](https://drive.google.com/uc?export=download&id=0B0osRPn3qBq5ZFBqQ1BMeU80cVU)
+
+Obviously, not much progress can be made with this diagram alone but for more complex systems it can sometimes be useful. This diagram might be a simple one that shows the different parts of a system that handle various API calls for example.
+
+The tool that I chose to draw the sequence diagrams is available online at https://www.websequencediagrams.com it allows you to simply describe a sequence using text that is then parsed and turned into a diagram. The syntax is pretty trivial and comes from the js-sequence-diagrams project: https://bramp.github.io/js-sequence-diagrams/ . Below is the text that was used to generate the simple diagram above:
+
+```
+title Simplified Certificate Request Flow
+Client->Anchor: HTTPS [ Certificate Signing Request & Credentials ]
+Anchor-->Anchor: Validate Credentials
+Anchor-->Anchor: Validate Request
+Anchor->Client: [ Certificate | Error ]
+```
+
+The threat analysis project does not place any requirements on what tools should be used to generate diagrams but in our experience the js-sequence-diagrams syntax is the easiest to use. The diagram below
+runs through the process for Anchor to sign (or refuse to sign) a certificate signing request.
+
+![Detailed Anchor Sequence Diagram](https://drive.google.com/uc?export=download&id=0B0osRPn3qBq5b3labDRocTNsQlk)
+
+In this diagram we've used a few annotations to help the reader more easily understand the communication taking place. First lets take a look at the complete source code for this diagram:
+
+```
+title Detailed Certificate Request Flow
+Client System->Load Balancer: [1-2] HTTPS [GET /sign? & Certificate Signing Request & Credentials ]
+Load Balancer->Anchor Instance: [3-4] HTTP [GET /sign? & Certificate Signing Request & Credentials ]
+Anchor Instance->LDAP: [5-8] Get group for user credentials
+LDAP-->LDAP: Lookup user
+LDAP->Anchor Instance: [5-8] Group membership info
+Anchor Instance-->Anchor Instance: Validate group matches requested certificate
+Anchor Instance-->Anchor Instance: Apply all validation rules from on disk config
+Anchor Instance->Audit Queue: [5-7] CADF [ Certificate Signing Request & Decision & User ]
+Anchor Instance->Load Balancer: [3-4] HTTP [ Certificate | Error]
+Load Balancer->Client System: [1-2] HTTPS [ Certificate | Error ]
+```
+
+The communication between the client system and the load balancer takes place over interface [1-2] (see the interface table above to check what that interface is and the security requirements around it) the protocol is HTTPS, the http verb is 'GET' and the resource is 'sign'. The first option passed to this is the 'Certificate Signing Request', this is separated from other parameters by the '&' character.
+
+```
+Client System->Load Balancer: [1-2] HTTPS [GET /sign? & Certificate Signing Request & Credentials ]
+```
+
+Sometimes we want notation that describes an either/or relationship rather than an inclusive list, in this case we use the '|' character:
+
+```
+Anchor Instance->Load Balancer: [3-4] HTTP [ Certificate | Error ]
+```
+
+These diagrams help reviewers to understand how components communicate and how date flows throughout a system. For each operation reviews can use the interface ID to check what security considerations have been given to that interface and if they map well to the operations described in the sequence diagram.
