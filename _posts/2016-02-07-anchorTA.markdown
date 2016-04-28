@@ -132,9 +132,9 @@ components communicate with each other.
 | -- | ---- | ------- | ---------- | --------------- | --------- | ------------ | ---------- |
 | 1-2 | Client to Load Balancer | The client connection to Anchor. Although this goes to a load balancer first, the client perception is that they are connecting directly with an Anchor instance | REST or CMC - both over TLS | Access credentials are passed over this connection. The credentials are not encrypted but the connection is. | Integrity of requests is important and protected by TLS. | Availability of 2 is important - this is why a LB is used in front of Anchor. Potentially two LB could be deployed with a DNS round-robin configuration | Public / Edge Network -> Control Plane |
 | 3-4 | Load Balancer to Anchor Instance | This is the main communication channel for Anchor operations. The data from the client is passed to anchor over TLS from the load balancer. | REST or CMC - both over TLS (whatever was provided over 1-2) | See 1-2 | See 1-2 | See 1-2 | Public Facing / Edge Network -> Internal Network / Control Plane |
-| 5 | Disk Read | Anchor reads configuration data from disk. This data can contain AD credentials, validation rules etc. Appropriate DAC and MAC should be set | FS Reads | High | High | Low/Med - Anchor requires access to this file only when the service starts | Entirely within control plane |
-| 6 | Audit Stream | To log events from Anchor | CADF | Low - no sensitive data in logs although in aggregate logs could provide an attacker with an understanding on the layout of the infrastructure | High | Medium | Within control plane |
-| 7 | LDAP connection | To authenticate users and verify that the group they reside in matches what's required in validation rules | LDAP over TLS | High | High | High | Internal Network / Control Plane -> External corporate network |
+| 5-6 | Disk Read | Anchor reads configuration data from disk. This data can contain AD credentials, validation rules etc. Appropriate DAC and MAC should be set | FS Reads | High | High | Low/Med - Anchor requires access to this file only when the service starts | Entirely within control plane |
+| 5-7 | Audit Stream | To log events from Anchor | CADF | Low - no sensitive data in logs although in aggregate logs could provide an attacker with an understanding on the layout of the infrastructure | High | Medium | Within control plane |
+| 5-8 | LDAP connection | To authenticate users and verify that the group they reside in matches what's required in validation rules | LDAP over TLS | High | High | High | Internal Network / Control Plane -> External corporate network |
 
 
 The next step in the process is to generate sequence diagrams for a
@@ -190,7 +190,7 @@ The communication between the client system and the load balancer takes place ov
 Client System->Load Balancer: [1-2] HTTPS [GET /sign? & Certificate Signing Request & Credentials ]
 ```
 
-Sometimes we want notation that describes an either/or relationship rather than an inclusive list, in this case we use the '|' character:
+Sometimes we want notation that describes an either/or relationship rather than an inclusive list, in this case we use the '\|' character:
 
 ```
 Anchor Instance->Load Balancer: [3-4] HTTP [ Certificate | Error ]
