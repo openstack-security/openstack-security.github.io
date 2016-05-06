@@ -8,7 +8,7 @@ author: "tmcpeak @ IBM Cloud, sicarie @ HPE"
 ---
 
 Recently, there have been a few talks around "vulnerabilities" within
-the OpenStack project that missed the mark so much they deserve note.
+the OpenStack project that introduced some unfair concern.
 
 Some of them call out important concepts such as
 [CIA](https://en.wikipedia.org/wiki/Information_security#Key_concepts)
@@ -25,14 +25,15 @@ process.
 ## Vulnerability Management in OpenStack
 A vulnerability in OpenStack usually begins life as a bug filed against
 a project with the "security" tag.  These bugs are marked private and sent
-directly to the project's security team and the VMT.  An initial triage is
-performed to understand whether the bug represents a legitimate security issue
-and if so what the impact is.  If the issue is confirmed, an advisory and patch
-are prepared and validated privately.  Once the the advisory and fix are
-available, OpenStack stakeholders are given two weeks early notice to patch
-their systems before public disclosure.  The reason the two week notice is
-important is because **it is expected that a responsible OpenStack provider
-will respond to security advisories in a timely manner.**
+directly to the project's security team and the Vulnerability Management Team
+(VMT). An initial triage is performed to understand whether the bug represents
+a legitimate security issue and if so what the impact is.  If the issue is
+confirmed, an advisory and patch are prepared and validated privately.
+Once the the advisory and fix are available, OpenStack stakeholders are
+given two weeks early notice to patch their systems before public disclosure.
+The reason the two week notice is important is because **it is expected that
+a responsible OpenStack provider will respond to security advisories in a
+timely manner.**
 
 ![VMT Process](https://security.openstack.org/_images/vmt-process.png)
 
@@ -41,25 +42,27 @@ will respond to security advisories in a timely manner.**
 The Vulnerability Management Team (VMT) only manages issues for OpenStack
 components (with the "vulnerability:managed" tag) inside the OpenStack ecosystem.
 A portion of recently discussed "vulnerabilities" have to do with third party
-applications deployed on an OpenStack cloud. Unfortunately, much as an
-operating system is utilized to host insecure things like old versions of
-Java or PHP that can be vulnerable to many attacks, OpenStack is used to
-host applications that can also be vulnerable. It is the responsibility of
-the group maintaining and distributing the third party application to managed
-the security of that application (ie, a vulnerability in PostgreSQL is `not`
-a vulnerability within OpenStack).
+applications deployed on an OpenStack cloud. The responsibility for securing
+third party applications is shared between the third party developer to produce
+timely patches to secure products, distributions to make sure there are sane
+defaults baked-in to the product, deployers to ensure their configurations are
+tuned to their environment and applications as well as patching methods, and
+the OpenStack community. To that end, the OpenStack Security Project maintains
+the [OpenStack Security Guide](http://docs.openstack.org/security-guide/) for
+help architecting secure environments, and [Security Notes](https://wiki.openstack.org/wiki/Security_Notes)
+to address common deployment-specific issues that have been found.
 
 
 ## Conclusion - Please Deploy Things Securely
-It is up to the individual group deploying and maintaining the OpenStack cloud
-to do so in a secure fashion. The recommendations mentioned in the
-[OpenStack Security Guide](http://docs.openstack.org/security-guide/) are
-frequently summarized with checklists [such as this one on the Identity service,
-Keystone](http://docs.openstack.org/security-guide/identity/checklist.html) to
-help deployers stand up a service securely.  Additionally, the OpenStack Security
-Project also makes [Security Notes](https://wiki.openstack.org/wiki/Security_Notes)
-available to provide quick security guidance to deployers.
+The OpenStack community is very concerned about security, and actively engages
+the upstream community, deployers, and operators to help increase the overall
+security posture of every OpenStack deployment. The Security Project has
+released many tools and references to assist everyone with the knowledge to
+securely configure and maintain their OpenStack cloud.
 
 Finally, if you have found a security issue in OpenStack, please disclose it
 responsibly by marking "security" in the LaunchPad bug report, or by contacting
-the involved project team or VMT team members directly.
+the involved project team or VMT team members directly. The Security Project
+welcomes everyone wishing to discuss, learn, or contribute to the security of
+the OpenStack project and can be found on freenode in the #openstack-security
+room, or on the OpenStack developers mailinglist with the [security] tag.
