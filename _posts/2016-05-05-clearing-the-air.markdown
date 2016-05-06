@@ -50,13 +50,14 @@ a vulnerability within OpenStack).
 
 
 ## Conclusion - Please Deploy Things Securely
-Finally, it is up to the individual group deploying and maintaining the
-OpenStack cloud to do so in a secure fashion. The recommendations mentioned in the
+It is up to the individual group deploying and maintaining the OpenStack cloud
+to do so in a secure fashion. The recommendations mentioned in the
 [OpenStack Security Guide](http://docs.openstack.org/security-guide/) are
-frequently summarized with checklists to help deployers stand up a service
-securely.  Additionally, the OpenStack Security Project also makes
-[Security Notes](https://wiki.openstack.org/wiki/Security_Notes) available to
-provide quick security guidance to deployers.
+frequently summarized with checklists [such as this one on the Identity service,
+Keystone](http://docs.openstack.org/security-guide/identity/checklist.html)to
+help deployers stand up a service securely.  Additionally, the OpenStack Security
+Project also makes [Security Notes](https://wiki.openstack.org/wiki/Security_Notes)
+available to provide quick security guidance to deployers.
 
 Finally, if you have found a security issue in OpenStack, please disclose it
 responsibly by marking "security" in the LaunchPad bug report, or by contacting
