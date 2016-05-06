@@ -10,16 +10,17 @@ author: "tmcpeak @ IBM Cloud, sicarie @ HPE"
 Recently, there have been a few talks around "vulnerabilities" within
 the OpenStack project that missed the mark so much they deserve note.
 
-While some of them call out important concepts such as
+Some of them call out important concepts such as
 [CIA](https://en.wikipedia.org/wiki/Information_security#Key_concepts)
-and the [CVE database](https://cve.mitre.org/), they all attempt to
-highlight vulnerabilities or attack vectors within OpenStack that
-have either been addressed years ago, or are not able to be addressed
+and the [CVE database](https://cve.mitre.org/). Unfortunately, they all
+attempt to highlight vulnerabilities or attack vectors within OpenStack
+that have either been addressed years ago, or are not able to be addressed
 by the upstream community and are the responsibility of the group
 deploying and maintaining the cloud.
 
-To understand why upstream OpenStack `is` secure, it's important to
-briefly introduce the OpenStack vulnerability management process.
+To understand how OpenStack handles vulnerabilities securely, it is
+important to briefly introduce the OpenStack vulnerability management
+process.
 
 ## Vulnerability Management in OpenStack
 A vulnerability in OpenStack usually begins life as a bug filed against
@@ -38,14 +39,14 @@ will respond to security advisories in a timely manner.**
 
 ## Vulnerability Management Outside of OpenStack
 The Vulnerability Management Team (VMT) only manages issues for OpenStack
-componens (with the "vulnerability:managed" tag) inside the OpenStack ecosystem.
-A large part of other claimed "vulnerabilities" have to do with third party
+components (with the "vulnerability:managed" tag) inside the OpenStack ecosystem.
+A portion of recently discussed "vulnerabilities" have to do with third party
 applications deployed on an OpenStack cloud. Unfortunately, much as an
 operating system is utilized to host insecure things like old versions of
-Java or PHP that can be vulnerable to many attacks, so OpenStack is used to
+Java or PHP that can be vulnerable to many attacks, OpenStack is used to
 host applications that can also be vulnerable. It is the responsibility of
 the group maintaining and distributing the third party application to managed
-the security of that application (ie, a vulnerability in PostGRE SQL is `not`
+the security of that application (ie, a vulnerability in PostgreSQL is `not`
 a vulnerability within OpenStack).
 
 
