@@ -53,7 +53,7 @@ help architecting secure environments, and [Security Notes](https://wiki.opensta
 to address common deployment-specific issues that have been found.
 
 
-## Conclusion - Please Deploy Things Securely
+## Conclusion - We're Here To Help
 The OpenStack community is very concerned about security, and actively engages
 the upstream community, deployers, and operators to help increase the overall
 security posture of every OpenStack deployment. The Security Project has
