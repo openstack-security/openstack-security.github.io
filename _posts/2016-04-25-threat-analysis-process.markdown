@@ -11,7 +11,7 @@ author: "dg__ @ Hewlett Packard Enterprise"
 
 Following on from our previous posts on
 [Threat analysis]({% post_url 2016-01-16-threat-analysis %}) and
-[Applying threat analysis to Anchor]({% post_url 2016-02-07-anchorTA %}), we
+[Applying threat analysis to Anchor]({% post_url 2016-04-28-anchorTA %}), we
 have been working on defining a lightweight process for threat analysis which
 can be applied to OpenStack projects. This blog post gives a first look at the
 draft process, the final location of which is to be decided, but it is likely
