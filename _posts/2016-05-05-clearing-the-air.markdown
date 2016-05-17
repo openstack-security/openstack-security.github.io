@@ -8,7 +8,7 @@ author: "tmcpeak @ IBM Cloud, sicarie @ HPE"
 ---
 
 Recently, there have been a few talks around "vulnerabilities" within
-the OpenStack project that introduced some unfair concern.
+the OpenStack project that introduced some undue concern.
 
 Some of them call out important concepts such as
 [CIA](https://en.wikipedia.org/wiki/Information_security#Key_concepts)
