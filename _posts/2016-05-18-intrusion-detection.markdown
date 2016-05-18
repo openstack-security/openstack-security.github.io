@@ -65,5 +65,5 @@ A future blog post will explore running an IDS in containers. This configuration
 
 [2] [Devconf 2016 Intrusion Detection in the Cloud](https://www.youtube.com/watch?v=TT4ZBlAvo6M)
 
-[3] [OpenStack Vancouver 2015 Tasp-as-a-Service](https://www.openstack.org/summit/vancouver-2015/summit-videos/presentation/tap-as-a-service-taas-port-monitoring-for-neutron-networks)
+[3] [OpenStack Vancouver 2015 Tap-as-a-Service](https://www.openstack.org/summit/vancouver-2015/summit-videos/presentation/tap-as-a-service-taas-port-monitoring-for-neutron-networks)
 
