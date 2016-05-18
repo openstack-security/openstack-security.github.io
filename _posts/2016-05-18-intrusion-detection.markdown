@@ -37,7 +37,7 @@ The tap is attached to the integration bridge.
 ## The OpenStack SDN
 ![The OpenStack SDN](../assets/IDS-sdn.jpg)
 
-For more information in TaaS and Fuel contrail, including demos, see [1] [2] [3].
+For more information in TaaS and Fuel contrail, including demos, see <a name="1"></a>, <a name="2"></a>, and <a name="3"></a>. 
 
 To set up OpenStack with TaaS using devstack, you can add the following lines to local.conf:
 
@@ -61,9 +61,9 @@ Once an attack is detected, the administrator can be alerted. The administrator 
 
 A future blog post will explore running an IDS in containers. This configuration would scale elastically according to I/O needs. Other areas to explore are extraction of files from the network stream to run malware scans.
 
-[1] [OpenStack Austin 2016 talk](https://www.openstack.org/videos/video/using-open-source-security-architecture-to-defend-against-targeted-attacks)
+[1](#1) [OpenStack Austin 2016 talk](https://www.openstack.org/videos/video/using-open-source-security-architecture-to-defend-against-targeted-attacks)
 
-[2] [Devconf 2016 Intrusion Detection in the Cloud](https://www.youtube.com/watch?v=TT4ZBlAvo6M)
+[2](#2) [Devconf 2016 Intrusion Detection in the Cloud](https://www.youtube.com/watch?v=TT4ZBlAvo6M)
 
-[3] [OpenStack Vancouver 2015 Tasp-as-a-Service](https://www.openstack.org/summit/vancouver-2015/summit-videos/presentation/tap-as-a-service-taas-port-monitoring-for-neutron-networks)
+[3](#3) [OpenStack Vancouver 2015 Tasp-as-a-Service](https://www.openstack.org/summit/vancouver-2015/summit-videos/presentation/tap-as-a-service-taas-port-monitoring-for-neutron-networks)
 
