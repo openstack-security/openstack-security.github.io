@@ -37,7 +37,7 @@ The tap is attached to the integration bridge.
 ## The OpenStack SDN
 ![The OpenStack SDN](../assets/IDS-sdn.jpg)
 
-For more information in TaaS and Fuel contrail, including demos, see <a name="1"></a>, <a name="2"></a>, and <a name="3"></a>. 
+For more information in TaaS and Fuel contrail, including demos, see footnotes [1], [2], and [3]. 
 
 To set up OpenStack with TaaS using devstack, you can add the following lines to local.conf:
 
