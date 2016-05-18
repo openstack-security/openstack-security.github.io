@@ -57,7 +57,7 @@ You may see a small performance hit when you mirror data. It has been measured t
 
 In addition, it is probably better to run the IDS on a different node than the instances being monitored. Otherwise the IDS will take CPU cycles from other instances while processing mirrored traffic.
 
-Once an attack is detected, the administrator can be alerted. The administrator may desire to take an action taken to block the attack - this is sometimes called an “automated response”. Such actions could add firewall rules, delete instances, or otherwise forcibly stop the threat.
+Once an attack is detected, the administrator can be alerted. The administrator may desire to take an action to block the attack - this is sometimes called an “automated response”. Such actions could add firewall rules, delete instances, or otherwise forcibly stop the threat.
 
 A future blog post will explore running an IDS in containers. This configuration would scale elastically according to I/O needs. Other areas to explore are extraction of files from the network stream to run malware scans.
 
