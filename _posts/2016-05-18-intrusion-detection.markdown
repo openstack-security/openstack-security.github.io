@@ -16,7 +16,7 @@ Call the *monitor* the OpenStack instance that runs the IDS. There are different
 
 Running an IDS in-band can impact performance. Therefore, this blog describes the second “mirroring” approach. The disadvantage is the threat will not be known until after the fact. This is a tradeoff that is often taken when using an IDS.
 
-[Using mirroring with OpenStack](../assets/IDS-mirror-setup.jpg)
+![Using mirroring with OpenStack](../assets/IDS-mirror-setup.jpg)
 
 Call the IDS *administrator* the person who manages the monitor. It could be
 * the tenant administrator
