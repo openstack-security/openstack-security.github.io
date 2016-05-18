@@ -7,6 +7,8 @@ tags: Intrusion Detection
 author: "dlambrig@redhat.com"
 ---
 
+## Network Intrustion Detection in OpenStack
+
 A Network Intrusion Detection System (IDS) can watch traffic and warn an administrator when an attack or suspicious behavior occurs. This blog post will show how an IDS can be set up in OpenStack using one model and list architectural problems.
 
 Call the *monitor* the OpenStack instance that runs the IDS. There are different locations where the monitor could be placed.
@@ -39,7 +41,8 @@ For more information in TaaS and Fuel contrail, including demos, see [1] [2] [3]
 
 To set up OpenStack with TaaS using devstack, you can add the following lines to local.conf:
 
-```enable_plugin tap-as-a-service https://github.com/openstack/tap-as-a-service
+```
+enable_plugin tap-as-a-service https://github.com/openstack/tap-as-a-service
 enable_service taas
 enable_service taas_openvswitch_agent
 ```
