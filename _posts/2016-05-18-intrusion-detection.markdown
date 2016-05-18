@@ -17,6 +17,7 @@ Call the *monitor* the OpenStack instance that runs the IDS. There are different
 Running an IDS in-band can impact performance. Therefore, this blog describes the second “mirroring” approach. The disadvantage is the threat will not be known until after the fact. This is a tradeoff that is often taken when using an IDS.
 
 ![Using mirroring with OpenStack](../assets/IDS-mirror-setup.jpg)
+## Using mirroring with OpenStack
 
 Call the IDS *administrator* the person who manages the monitor. It could be
 * the tenant administrator
@@ -31,6 +32,7 @@ Another option is Fuel contrail plug-in. That does have a GUI-based interface av
 The tap is attached to the integration bridge.
 
 ![The OpenStack SDN](../assets/IDS-sdn.jpg)
+## The OpenStack SDN
 
 For more information in TaaS and Fuel contrail, including demos, see [1] [2] [3].
 
