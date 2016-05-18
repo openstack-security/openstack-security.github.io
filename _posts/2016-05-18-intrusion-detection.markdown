@@ -61,9 +61,9 @@ Once an attack is detected, the administrator can be alerted. The administrator 
 
 A future blog post will explore running an IDS in containers. This configuration would scale elastically according to I/O needs. Other areas to explore are extraction of files from the network stream to run malware scans.
 
-[link 1](#1) [OpenStack Austin 2016 talk](https://www.openstack.org/videos/video/using-open-source-security-architecture-to-defend-against-targeted-attacks)
+[1] [OpenStack Austin 2016 talk](https://www.openstack.org/videos/video/using-open-source-security-architecture-to-defend-against-targeted-attacks)
 
-[link 2](#2) [Devconf 2016 Intrusion Detection in the Cloud](https://www.youtube.com/watch?v=TT4ZBlAvo6M)
+[2] [Devconf 2016 Intrusion Detection in the Cloud](https://www.youtube.com/watch?v=TT4ZBlAvo6M)
 
-[link 3](#3) [OpenStack Vancouver 2015 Tasp-as-a-Service](https://www.openstack.org/summit/vancouver-2015/summit-videos/presentation/tap-as-a-service-taas-port-monitoring-for-neutron-networks)
+[3] [OpenStack Vancouver 2015 Tasp-as-a-Service](https://www.openstack.org/summit/vancouver-2015/summit-videos/presentation/tap-as-a-service-taas-port-monitoring-for-neutron-networks)
 
