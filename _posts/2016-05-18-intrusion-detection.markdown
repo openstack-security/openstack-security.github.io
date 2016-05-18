@@ -30,7 +30,7 @@ Another option is Fuel contrail plug-in. That does have a GUI-based interface av
 
 The tap is attached to the integration bridge.
 
-[The OpenStack SDN](https://github.com/openstack-security/assets/IDS-sdn.png)
+[The OpenStack SDN](https://raw.githubusercontent.com/sicarie/openstack-security.github.io/master/assets/IDS-sdn.jpg)
 
 For more information in TaaS and Fuel contrail, including demos, see [1] [2] [3].
 
