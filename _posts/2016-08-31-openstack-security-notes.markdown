@@ -10,7 +10,7 @@ author: "lhinds @ Red Hat"
 For this post I will explain what OpenStack Security notes are, and how they
 benefit OpenStack operators.
 
-Recently tmcspeak and sicare provided a roundup of the [OpenStack Vulnerability
+Recently tmcpeak and sicare provided a roundup of the [OpenStack Vulnerability
 Management process](http://openstack-security.github.io/vulnerabilities/2016/05/05/clearing-the-air.html)
 , if you did not get a chance to read this blog, grab the opportunity and then
 return here, as OpenStack Notes are the sister process and also a key part of
@@ -23,10 +23,10 @@ architecture recommendation, configuration value or a file permission.
 
 OSSN’s are often born out of a vulnerability. Quite often it is decided within
 the discussion of a launchpad security bug, that a security advisory should be
-made to the community, to insure a clear understanding is communicated of the
+made to the community, to ensure a clear understanding is communicated of the
 nature any given security risk.
 
-Some examples of recent OSSN’s would be:
+Some examples of recent OSSN’s are:
 
 [Host machine exposed to tenant networks via IPv6](https://wiki.openstack.org/w/index.php?title=OSSN/OSSN-0069)
 
@@ -35,7 +35,7 @@ Some examples of recent OSSN’s would be:
 [Repeated token revocation requests, can lead to service degradation or disruption](https://wiki.openstack.org/wiki/OSSN/OSSN-0068)
 
 The end to end process of an OSSN, starts when a member of the security group,
-a project core, or a VMT member, mark a launchpad bug as an
+a project core, or a VMT member, marks a launchpad bug as an
 ‘OpenStack Security Note’. Shortly after this, an author will then assign
 themselves to the bug, and get to work on authoring the OSSN.
 
@@ -57,7 +57,8 @@ OSSN’s.
 OSSN’s are very good way of introducing yourself to security related work in
 OpenStack. It allows you to learn the complete gerrit workflow, and gains you
 valuable experience in how specs and documentation is accepted within the
-OpenStack community.
+OpenStack community. They also gain credit for your organization's focus on 
+security.
 
 We also welcome feedback from Operators on how valuable you find OSSN's, and
 ways you feel may improve the process.
