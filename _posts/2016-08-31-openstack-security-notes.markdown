@@ -7,7 +7,7 @@ tags: security notes vulnerabilities
 author: "lhinds @ Red Hat"
 ---
 
-For this post I will explain what OpenStack Security notes are, and how they
+In this post I will explain what OpenStack Security notes are, and how they
 benefit OpenStack operators.
 
 Recently tmcpeak and sicare provided a roundup of the [OpenStack Vulnerability
@@ -16,23 +16,24 @@ Management process](http://openstack-security.github.io/vulnerabilities/2016/05/
 return here, as OpenStack Notes are the sister process and also a key part of
 how OpenStack manages security risks.
 
-OpenStack Security Notes (OSSN’s), are security notifications that are generated
-to notify operators of a discovered risk, that are often not (but not always)
-directly addressed by a code patch. OSSN's can be in the form of a deployment
-architecture recommendation, configuration value or a file permission.
+OpenStack Security Notes (OSSNs) are security notifications which let operators 
+know of a newly identified risks and the steps they should take to mitigate that 
+issue. In many cases, OSSNs are used to publicise issues which cannot be fixed 
+with a code patch to openstack and instead make recommendations to resolve the 
+issue with compensating controls, such as architectural or configuration changes.
 
-OSSN’s are often born out of a vulnerability. Quite often it is decided within
-the discussion of a launchpad security bug, that a security advisory should be
-made to the community, to ensure a clear understanding is communicated of the
-nature any given security risk.
+OSSN’s are born out of a vulnerability report. It is often decided within the 
+discussion of a launchpad security bug, that a security advisory should be made 
+to the community, to ensure a clear understanding is communicated of the nature 
+any given security risk.
 
 Some examples of recent OSSN’s are:
-
-[Host machine exposed to tenant networks via IPv6](https://wiki.openstack.org/w/index.php?title=OSSN/OSSN-0069)
 
 [Bandit versions lower than 1.1.0 do not escape HTML in issue reports](https://wiki.openstack.org/wiki/OSSN/OSSN-0070)
 
 [Repeated token revocation requests, can lead to service degradation or disruption](https://wiki.openstack.org/wiki/OSSN/OSSN-0068)
+
+[Barbican server discloses SQL Connection String and X-auth token](https://wiki.openstack.org/wiki/OSSN/OSSN-0067)
 
 The end to end process of an OSSN, starts when a member of the security group,
 a project core, or a VMT member, marks a launchpad bug as an
