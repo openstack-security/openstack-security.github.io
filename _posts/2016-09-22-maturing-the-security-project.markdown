@@ -11,7 +11,7 @@ This blog article is intended to address the recent discussions on the openstack
 
 Back in the early days of the Security Project being in the big tent I missed the election deadline for my nomination. Pure oversight on my part, I was new to the role of PTL having been grandfathered in from the working group and I simply didn't realise what was required for elections. 'Missing a nomination once is bad, so missing the most recent nomination window is obviously very bad and raises questions over the level of engagement we have in the community, particularly as everyone in the OSSP also missed the email sent to highlight the closing nomination window (Its the one on the 19th)...
 
-![PTL election reminder](../assets/SecurityMail.png)
+![PTL election reminder](https://openstack-security.github.io/assets/SecurityMail.png)
 
 Unfortunately during the nomination window I was temporarily distracted dealing with
 some local issues. I've discussed these with a member of the TC who recognises that
