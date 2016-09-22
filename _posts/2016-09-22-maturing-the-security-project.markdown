@@ -7,19 +7,9 @@ tags: maturity PTL OSSP
 author: "hyakuhei @ IBM Cloud"
 ---
 
-Once in each release cycle project teams within the OpenStack big-tent are
-required to elect a Project Technical Lead. This process starts with nominations
-where any qualified active contributor is welcome to submit a nomination.
+This blog article is intended to address the recent discussions on the openstack-dev mailing list, following the suggestion by Thierry on behalf of the TC that the OpenStack Security Project "should be removed from the Big Tent" because the security team failed to nominate and elect a project ream lead (PTL) for the next release cycle. This process is required for all active project teams and is seen by the TC as a failure in community engagement that the OSSP has missed this deadline, again.
 
-Back in the early days of the Security Project being in the big tent I missed the
-election deadline for my nomination. Pure oversight on my part, I was new to the
-role of PTL having been grandfathered in from the working group and I simply didn't
-realise what was required for elections.
-
-If missing a nomination once is bad, missing the most recent nomination window must
-be very bad and I can completely understand the questions that this has raised around
-the level of engagement we have in the community, after all, emails were sent on
--dev to highlight the closing nomination window, I even received them as you can see below (It's the one on the 19th)...
+Back in the early days of the Security Project being in the big tent I missed the election deadline for my nomination. Pure oversight on my part, I was new to the role of PTL having been grandfathered in from the working group and I simply didn't realise what was required for elections. 'Missing a nomination once is bad, so missing the most recent nomination window is obviously very bad and raises questions over the level of engagement we have in the community, particularly as everyone in the OSSP also missed the email sent to highlight the closing nomination window (Its the one on the 19th)...
 
 ![PTL election reminder](../assets/SecurityMail.png)
 
@@ -31,14 +21,14 @@ has been rung and we must decide how to proceed.
 ## Maturing the Security Project
 Missing two nominations reflects badly on a project team and leads to several understandable
 [questions](http://lists.openstack.org/pipermail/openstack-dev/2016-September/104170.html) being
-asked: _who are these guys?_ _are they an active team?_ _should they be moved outside of the big
+asked: _Who are these people?_ _Are they an active team?_ _Should they be moved outside of the big
 tent?_
 
 These are understandable questions, I feel that my [on-thread
 response](http://lists.openstack.org/pipermail/openstack-dev/2016-September/104176.html) addressed
-them for the most part. What I want to focus on in this blog post is the things that we need to do to
-be a better part of the community. To ensure that project teams and the TC are both aware of what we
-do and how we help improve security in OpenStack.
+them for the most part. What I want to focus on is the things that we need to do to be a better part of
+the community and ensure that project teams and the TC are both aware of what we do and how we help
+improve security in OpenStack.
 
 We know from the feedback we've had from downstream OpenStack consumers that our work
 is valued, we need to better demonstrate that value within the OpenStack community. I think a good
@@ -52,9 +42,6 @@ in OpenStack. We need to become a better community player though, through doing 
 new opportunities to innovate on security and create new ways to make OpenStack more secure.
 
 ## Score Card
-I'm sure this isn't a new idea but I wasn't able to find much good evidence of
-other teams doing this when I had a quick search.
-
 I'm proposing a score card for the security project, to ensure we're doing all that
 we should be doing and identify those areas where we need to improve. I've based this
 on the [Project Team Guide](http://docs.openstack.org/project-team-guide)
@@ -70,12 +57,11 @@ Project IRC channel | Achieved | #openstack-security
 Community Support Channels | Mostly Achieved | We are strong on Launchpad and IRC which is where 90% of our workload comes from however we need to pay more attention to the ML and ask.openstack.org
 Planet OpenStack | Achieved | This security blog posts to planet openstack
 Participate in Design Summits | Achieved | Regular, very well attended sessions
-Participate in Cross Project meeting | Needs Improvement | We did, for a time have people attending these meetings but not much was actively invested and over time I think they just fell off peoples calendars.
 Release Management | Achieved | We have a number of software projects that we created to support or enhance security in OpenStack. As they're not directly consumed by OpenStack Operators they've not been part of the normal release cycle. Instead we follow the Independent release model.
-Support Phases | Needs Clarification | I'm not sure if our software projects would fall within this as we have an independent release model.
-Testing | Achieved | All of our software and documentation efforts have appropriate gate tests in place. Functional and Unit tests are in place where appropriate.
+Support Phases | Needs Improvement | Traditionally we have not followed the normal support phases for our projects because they have not been directly consumed by downstream OpenStack users. However there's a clear opportunity to get more in line with the rest of the OpenStack community here. This should make things like rolling Bandit changes out through CI easier.
+Testing | Achieved++ | All of our software and documentation efforts have appropriate gate tests in place. Functional and Unit tests are in place where appropriate. We've also built tooling that other teams are using in their projects for Security gate tests. We're not just testing, we're also testing our integration with the projects that have adopted us.
 Vulnerability Management | Achieved | Our software projects don't have the vulnerability managed tag, however as the OSSP we do triage any security issues in our own software following standard processes, this is best demonstrated with the recent XSS issue in Bandit https://bugs.launchpad.net/bandit/+bug/1612988
-Documentation | Mostly Achieved | We have a lot of documentation out there for customers and consumers of openstack [OSSNs](https://wiki.openstack.org/wiki/Security_Notes), [security.openstack.org](https://security.openstack.org), the [security guide](http://docs.openstack.org/sec/) as well as developer documentation such as that for [Anchor](http://docs.openstack.org/developer/anchor/) and [Bandit](http://docs.openstack.org/developer/bandit/)
+Documentation | Achieved | We have a lot of documentation out there for customers and consumers of openstack [OSSNs](https://wiki.openstack.org/wiki/Security_Notes), [security.openstack.org](https://security.openstack.org), the [security guide](http://docs.openstack.org/sec/) as well as developer documentation such as that for [Anchor](http://docs.openstack.org/developer/anchor/) and [Bandit](http://docs.openstack.org/developer/bandit/)
 
 ## The Four Opens
 To paraphrase from the OpenStack [documentation](http://governance.openstack.org/reference/opens.html) it's
@@ -102,8 +88,8 @@ done. We can be found on #openstack-meeting-alt at 1700UTC every Thursday. Our
 meetings are public and
 [logged](http://eavesdrop.openstack.org/meetings/security/2016/) we have a standing
 public [agenda](https://etherpad.openstack.org/p/security-agenda) that any developer
-is welcome to contribute to if they want to participate in the meeting. However that
-isn't a gate. We welcome people dropping by with questions, comments etc.
+is welcome to contribute to if they want to participate in the meeting, we also welcome people dropping
+by with questions, comments etc.
 
 **Mailing Lists:** When the Security Project first formed we were a working group,
 we had a separate mailing list that didn't get used for many things but for legacy reasons that I
@@ -152,11 +138,11 @@ Without the legitimacy we have from being part of the big-tent we will not get t
 required to deliver and enhance security within OpenStack.
 
 ## Moving Forward
-For starters, I think it's clear by now that **I want the Security Project to have the opportunity to
+I think it's clear by now that **I want the Security Project to have the opportunity to
 stay within the big-tent**. I'd like to **continue on as PTL** at least through a period of maturing
 the Security Project to ensure that our baseline operations are aligned with what the wider community
 expects of any big-tent project.
 
-I want the opportunity to improve the score card above and have us
-achieving everything on that list. I see no reason why we can't begin acting on these things now
-and that our status can easily be judged on this basis during the next election cycle.
+I want the opportunity to improve the score card above and have us achieving everything on that list.
+I see no reason why we can't begin acting on these things now and that our status can easily be judged
+on this basis during the next election cycle.
