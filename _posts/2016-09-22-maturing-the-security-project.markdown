@@ -118,7 +118,8 @@ communication medium than another but I fully accept that to meet our obligation
 opens we must find a way to work more effectively on the mailing lists.
 
 **Community Support Channels:** We manage all of our bugs on LaunchPad, that's the primary way we
-interact with the VMT. Our IRC channel is reasonably active, we don't have a
+interact with the VMT. Our IRC channel is reasonably active but as we've described above we certainly
+need to do better on the mailing lists.
 
 ## Impact of removing Security from the big-tent
 Although I think it's been addressed a number of times on the mailing-list
@@ -147,8 +148,8 @@ maintain etc. Having been in the position of lobbying various corporations for s
 I cannot imagine a scenario where we could leave the big tent and continue to dedicate time to the
 efforts we have in place.
 
-Without the legitimacy we have from being part of the big tent we will not get the investment
-required to deliver and enhance security within OpenStack
+Without the legitimacy we have from being part of the big-tent we will not get the investment
+required to deliver and enhance security within OpenStack.
 
 ## Moving Forward
 For starters, I think it's clear by now that **I want the Security Project to have the opportunity to
