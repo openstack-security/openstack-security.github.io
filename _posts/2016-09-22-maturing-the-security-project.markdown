@@ -122,7 +122,7 @@ OpenStack, you're either in the tent or you're largely an irrelevance. We know t
 outside of the tent and found it much harder to engage with teams where we could see there were
 obvious security issues. Being outside of the big-tent will make it very difficult for us to act as an
 authority for signing off that a project has taken reasonable security steps before applying for a
-vulnerability managed tag, a relatively recent [change](https://review.openstack.org/#/c/294212/)
+vulnerability managed tag, a relatively recent [change](https://review.openstack.org/#/c/294212/).
 
 **Investment:** Running any OpenStack project requires investment, very few projects succeed based
 only on people working on them in their spare time. For the most part investment here means giving
