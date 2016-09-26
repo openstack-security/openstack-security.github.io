@@ -1,0 +1,199 @@
+---
+layout: post
+title:  "Applying threat analysis to Anchor"
+date:   2016-04-28
+categories: threatanalysis
+tags: anchor ephemeral pki certificates
+author: "hyakuhei @ IBM Cloud"
+---
+As a followup to my previous post on [Threat Analysis]({% post_url 2016-01-16-threat-analysis %})
+I started working through a simple TA process for [Anchor]({% post_url 2016-01-20-ephemeral-pki %})
+with a view to seeing how long the process takes as well as trying to
+understand how we should document the steps that are required. I think
+we need to end up with a point by point guide to TA, some simple process
+that is repeatable and somewhat deterministic.
+
+A good measure of the quality of this documentation would be to have two
+groups of developers from the same project attempt to perform TA in
+parallel and compare the results.
+
+We are still working on the process as can been seen from this review.
+
+## Reference architectures
+
+One of the problems when trying to work out how to create threat
+analysis documentation for OpenStack services is that they can be
+configured in so many different ways. Anchor is probably one of the
+least complicated services in the ecosystem, capable of being deployed
+in a completely stand alone, single service, single host configuration.
+However, this is not how it's intended to be used 'in production'. The
+expectation is that developers use best judgement on what the best
+practice architecture should look like, what components should be
+present and what should be optional or recommended. You can see this in
+the architecture diagram for Anchor below. I decided to represent the
+system in an HA configuration but with LDAP and the audit queue as
+optional components. The uses, threats to and protections for the
+optional components will be included in the TA but the notation will
+highlight that Anchor does not explicitly require these services to run.
+
+## Anchor components
+
+In this diagram you can see that a typical Anchor deployment typically
+consists of just a load balancer, a couple of Anchor instances and the
+Anchor configuration file which is stored on disk.
+![Anchor Component Diagram](https://drive.google.com/uc?export=download&id=0B0osRPn3qBq5YWEyWGNZemVGMzQ)
+
+The interface list in this diagram doesn't contain a lot of information
+but it's really just there for a quick reference.
+
+## Security Requirements
+
+For each component we like to run through a list of basic security
+considerations these are at a minimum **Confidentiality**, **Integrity** and
+**Availability** (C.I.A) - bonus points are awarded for including
+**Authorization**, **Authentication** and **Auditability**.
+
+**Artefact** - Generic term for a given component, interface or asset.
+
+- **Confidentiality:** Does this artefact include or access information that
+should be kept secret - could this information be used to compromise the
+security or integrity of the system. In the context of the
+Anchor project, the on disk config, validators and AuthN information stored
+on-disk (c4) and read through interface (5) contain confidential information.
+- **Integrity:** Does this artefact include or access information that it's
+critical remains correct? Often it is the case that components that have strong
+confidentiality requirements will also have strong integrity requirements but
+there are times where strong integrity requirements can exist without
+confidentiality. Consider a time signal that a service relies on for
+synchronisation - the time of day is in no way confidential or sensitive
+however it's critical to the process that the integrity of the time signal is
+preserved.
+- **Availability:** Will the system overall fail if this component, interface or
+asset is momentarily unavailable - what is the impact of a potential failure?
+- **Authentication:** Does the artefact involve or require authentication for
+some or all operations - what is the impact of the authentication system
+failing.
+- **Authorization:** Once an entity has authenticated (the system knows the
+  identity of the user) - is it authorized to perform an action. What happens
+  if an authorization failure allows all users to perform actions?
+- **Auditability:** Sometimes also considered as **non-repudiation** (I wont go
+  into the difference here) is the ability of the system to maintain a immutable
+  log of operations and events that occurred with a level of granularity that
+  allows an investigator to reconstruct any given series of events.
+
+
+## Discussion / Dissection
+
+At this point in the review it's time to talk about the block diagram. What data
+travels between components and what happens to that data within each component.
+Reviews should consider and capture:
+
+- What a reference architecture looks like and what parts are optional
+- The interfaces between components, what data travels over those
+interfaces
+- The security requirements for each interface
+- The protocols used
+
+The content of this discussion should be used to inform the component and
+interface lists as shown below. Consideration should be given to
+
+### Reference Architecture Validation
+**Does the presented architecture make sense as a reference for future
+deployer?**
+Yes - the block diagram uses dotted line objects to denote optional components.
+These components should be present in a strong and robust deployment of Anchor
+but are not required for a basic / test deployment.
+
+
+## Component list
+
+A component list is particularly useful for large projects as it helps
+keep track of all the different parts of a system under review. The component
+list describes the entities in the system and how they might process and
+persist data.
+
+| ID | Name | Purpose | Persists Sensitive Data | Exposed Protocols |
+| -- | ---- | ------- | ----------------------- | ----------------- |
+| c1 | Client System | Any server or service that requires a certificate for operations. | Yes - stores certificates from Anchor as well as it's own private keys. | TLS / 443 |
+| c2 | Load Balancer | Not strictly required for Anchor but strongly advisable. This component balances traffic between two or more instances of Anchor | No - Passes data between Anchor instances and clients. | TLS / 443 |
+| c3 | Anchor Instance | To validate certificate requests and generate certificates based on request data. |  Yes - Anchor reads configuration data from disk but does not store anything locally other than log caches when the audit stream isn't available | TLS / 443 |
+| c4 | Configuration File | To store configuration information |Anchor never writes to this file. It reads lots of sensitive data from the file including validation rules and credentials | Filesystem DAC |
+| c5 | Audit Queue | To receive, process and forward log data from Anchor instances. | Anchor emits no sensitive log data. Audit data contains: which host was issued a certificate, the type of authentication used and the validation rules that were met.  Depending on configuration the audit stream data may be logged in it's pre-processed form. Alternatively the representation within a target log management or SEIM application my be persisted. | Unsure |
+| c6 | LDAP Server | Anchor can use LDAP to simply authenticate a request or can use group membership as part of validation rules. I.E only a user in the "Nova Engineering" group is allowed to generate certificates matching the "*.compute.cloud" schema | LDAP undoubtedly stores sensitive data however no sensitive data is persisted in LDAP by Anchor or by any side affect of Anchor running. | Unsure |
+
+
+
+## Interface List
+
+The interface list describes how these
+components communicate with each other.
+
+| ID | Name | Purpose | Protocol(s)| Confidentiality | Integrity | Availability | Boundaries |
+| -- | ---- | ------- | ---------- | --------------- | --------- | ------------ | ---------- |
+| 1-2 | Client to Load Balancer | The client connection to Anchor. Although this goes to a load balancer first, the client perception is that they are connecting directly with an Anchor instance | REST or CMC - both over TLS | Access credentials are passed over this connection. The credentials are not encrypted but the connection is. | Integrity of requests is important and protected by TLS. | Availability of 2 is important - this is why a LB is used in front of Anchor. Potentially two LB could be deployed with a DNS round-robin configuration | Public / Edge Network -> Control Plane |
+| 3-4 | Load Balancer to Anchor Instance | This is the main communication channel for Anchor operations. The data from the client is passed to anchor over TLS from the load balancer. | REST or CMC - both over TLS (whatever was provided over 1-2) | See 1-2 | See 1-2 | See 1-2 | Public Facing / Edge Network -> Internal Network / Control Plane |
+| 5-6 | Disk Read | Anchor reads configuration data from disk. This data can contain AD credentials, validation rules etc. Appropriate DAC and MAC should be set | FS Reads | High | High | Low/Med - Anchor requires access to this file only when the service starts | Entirely within control plane |
+| 5-7 | Audit Stream | To log events from Anchor | CADF | Low - no sensitive data in logs although in aggregate logs could provide an attacker with an understanding on the layout of the infrastructure | High | Medium | Within control plane |
+| 5-8 | LDAP connection | To authenticate users and verify that the group they reside in matches what's required in validation rules | LDAP over TLS | High | High | High | Internal Network / Control Plane -> External corporate network |
+
+
+The next step in the process is to generate sequence diagrams for a
+selection of common or important operations within the system under
+review. This is again where the process relies on the best judgement of
+the reviewers - to generate enough sequence diagrams to map out major
+functionality or to ensure that the various interfaces in the reference
+architecture are explored.
+
+## Sequence Diagrams
+
+As a brief reminder to the reviewer, sometimes it's useful to include a simplified
+diagram that explains the general principles of a system such as the one below.
+
+![Simplified Anchor Diagram](https://drive.google.com/uc?export=download&id=0B0osRPn3qBq5ZFBqQ1BMeU80cVU)
+
+Obviously, not much progress can be made with this diagram alone but for more complex systems it can sometimes be useful. This diagram might be a simple one that shows the different parts of a system that handle various API calls for example.
+
+The tool that I chose to draw the sequence diagrams is available online at https://www.websequencediagrams.com it allows you to simply describe a sequence using text that is then parsed and turned into a diagram. The syntax is pretty trivial and comes from the js-sequence-diagrams project: https://bramp.github.io/js-sequence-diagrams/ . Below is the text that was used to generate the simple diagram above:
+
+```
+title Simplified Certificate Request Flow
+Client->Anchor: HTTPS [ Certificate Signing Request & Credentials ]
+Anchor-->Anchor: Validate Credentials
+Anchor-->Anchor: Validate Request
+Anchor->Client: [ Certificate | Error ]
+```
+
+The threat analysis project does not place any requirements on what tools should be used to generate diagrams but in our experience the js-sequence-diagrams syntax is the easiest to use. The diagram below
+runs through the process for Anchor to sign (or refuse to sign) a certificate signing request.
+
+![Detailed Anchor Sequence Diagram](https://drive.google.com/uc?export=download&id=0B0osRPn3qBq5b3labDRocTNsQlk)
+
+In this diagram we've used a few annotations to help the reader more easily understand the communication taking place. First lets take a look at the complete source code for this diagram:
+
+```
+title Detailed Certificate Request Flow
+Client System->Load Balancer: [1-2] HTTPS [GET /sign? & Certificate Signing Request & Credentials ]
+Load Balancer->Anchor Instance: [3-4] HTTP [GET /sign? & Certificate Signing Request & Credentials ]
+Anchor Instance->LDAP: [5-8] Get group for user credentials
+LDAP-->LDAP: Lookup user
+LDAP->Anchor Instance: [5-8] Group membership info
+Anchor Instance-->Anchor Instance: Validate group matches requested certificate
+Anchor Instance-->Anchor Instance: Apply all validation rules from on disk config
+Anchor Instance->Audit Queue: [5-7] CADF [ Certificate Signing Request & Decision & User ]
+Anchor Instance->Load Balancer: [3-4] HTTP [ Certificate | Error]
+Load Balancer->Client System: [1-2] HTTPS [ Certificate | Error ]
+```
+
+The communication between the client system and the load balancer takes place over interface [1-2] (see the interface table above to check what that interface is and the security requirements around it) the protocol is HTTPS, the http verb is 'GET' and the resource is 'sign'. The first option passed to this is the 'Certificate Signing Request', this is separated from other parameters by the '&' character.
+
+```
+Client System->Load Balancer: [1-2] HTTPS [GET /sign? & Certificate Signing Request & Credentials ]
+```
+
+Sometimes we want notation that describes an either/or relationship rather than an inclusive list, in this case we use the '\|' character:
+
+```
+Anchor Instance->Load Balancer: [3-4] HTTP [ Certificate | Error ]
+```
+
+These diagrams help reviewers to understand how components communicate and how date flows throughout a system. For each operation reviews can use the interface ID to check what security considerations have been given to that interface and if they map well to the operations described in the sequence diagram.
