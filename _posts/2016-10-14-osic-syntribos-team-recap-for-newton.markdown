@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Syntribos team recap for Newton"
+title:  "OSIC Syntribos team recap for Newton"
 date:   2016-10-14
 categories: syntribos
 tags: OSSP Python Security Syntribos
 author: "cneill @ Rackspace"
 ---
-
-# OSIC Syntribos team recap for Newton cycle
 
 Our team set out to accomplish several tasks during the Newton cycle:
 
@@ -15,7 +13,8 @@ Our team set out to accomplish several tasks during the Newton cycle:
   for testing the 6 [OSIC] key projects ([keystone], [neutron], [glance],
   [nova], [cinder], and [swift])
 - Test those 6 key projects and report our results to upstream developers
-- Based on our results, determine future action items to further improve Syntribos
+- Based on our results, determine future action items to further improve
+  Syntribos
 
 We succeeded in making Syntribos more configurable, easier to use, and less
 prone to false positives. We released several new features, removed cruft
@@ -108,7 +107,8 @@ Challenges
   it cut down on time for other improvements
 - Short testing schedule (1 month of testing for 6 projects)
 - Lack of unit tests meant that many changes introduced bugs/crashes into
-  master and required fix-ups. This happened less often as our coverage improved.
+  master and required fix-ups. This happened less often as our coverage
+  improved.
 - Documentation was lacking or inaccurate at the outset, and required
   significant effort to improve
 - Our team's relative inexperience with the OpenStack projects under test, and
@@ -125,7 +125,8 @@ about features, bugs, and general improvements to be made in Syntribos.
 Planned Changes for Ocata
 -------------------------
 
-- Cutting an official Syntribos release on PyPI
+- Cutting a stable Syntribos release on PyPI to reflect the many updates since
+  it was last released
 - Exploring multithreading for performance/time improvement in test runs, to
   make them more viable for gate jobs or similar
 - Enabling Syntribos to understand context beyond a single request (i.e. enable
@@ -137,8 +138,8 @@ Planned Changes for Ocata
 - Further improving test reliability & confidence, and reducing false positives
 
 
-Contributors to Newton Cycle
-============================
+Members of OSIC Syntribos Team
+==============================
 
 ### Rackspace
 - Charles Neill ([Github][Charles_github])
@@ -151,9 +152,6 @@ Contributors to Newton Cycle
 - Vinay Potluri ([Github][Vinay_github])
 - Aastha Dixit ([Github][Aastha_github])
 - Khanak Nangia ([Github][Khanak_github])
-
-References
-==========
 
 [1]: https://review.openstack.org/#/q/(owner:%22Rahul+U+Nair%22+OR+owner:%22Charles+Neill%22+OR+owner:%22Aastha+Dixit%22+OR+owner:%22Khanak+Nangia%22++OR+owner:%22Vinay+Potluri%22++OR+owner:%22Michael+Dong%22)+-project:openstack/syntribos
 [2]: https://review.openstack.org/#/q/(reviewer:%22Rahul+U+Nair%22+OR+reviewer:%22Charles+Neill%22+OR+reviewer:%22Aastha+Dixit%22+OR+reviewer:%22Khanak+Nangia%22++OR+reviewer:%22Vinay+Potluri%22++OR+reviewer:%22Michael+Dong%22)+-project:openstack/syntribos
