@@ -110,6 +110,7 @@ Challenges
   significant effort to improve.
 - Our team's relative inexperience with the OpenStack projects under test, and
   security testing in general in some cases, made testing more challenging.
+
 Syntribos Improvements / Future Plans
 =====================================
 
