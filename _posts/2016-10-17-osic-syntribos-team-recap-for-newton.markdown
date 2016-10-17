@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "OSIC Syntribos team recap for Newton"
-date:   2016-10-14
+title:  "Syntribos team recap for Newton"
+date:   2016-10-17
 categories: syntribos
 tags: OSSP Python Security Syntribos
 author: "cneill @ Rackspace"
@@ -9,9 +9,9 @@ author: "cneill @ Rackspace"
 
 Our team set out to accomplish several tasks during the Newton cycle:
 
-- Improve [Syntribos][syntribos] to the point that it was reliable and useful
-  for testing the 6 [OSIC] key projects ([keystone], [neutron], [glance],
-  [nova], [cinder], and [swift])
+- Improve [Syntribos][] to the point that it was reliable and useful
+  for testing the 6 projects [OSIC][] has chosen to focus on for Newton
+  ([keystone][], [neutron][], [glance][], [nova][], [cinder][], and [swift][])
 - Test those 6 key projects and report our results to upstream developers
 - Based on our results, determine future action items to further improve
   Syntribos
@@ -27,18 +27,13 @@ We started off the cycle by making improvements aimed at easing further
 development. This included cleaning up the codebase, creating documentation with
 sphinx, fixing bugs, writing unit tests, and adding docstrings, among other
 changes. We also removed our dependency on OpenCAFE at the request of some in
-the community, which took several weeks. Once we were more confident in the core
-codebase, we started focusing on how to improve the accuracy and depth of tests
-conducted by Syntribos. We used a special vulnerable API created by Matt Valdes
-from Rackspace to validate our improvements, and ensure that our tests were
-detecting the issues we introduced into the API.
-
-We attended the OpenStack Security Project (OSSP) midcycle at IBM's offices in
-Austin, helping out with two OpenStack Security Notes (OSSNs), participating in
-the Threat Analysis (TA) process for the barbican project, and collecting
-feedback from others in the OSSP about Syntribos. Throughout the cycle we have
-participated in OSSP and other projects when we've had spare time [[1]] [[2]],
-doing code reviews and submitting patches.
+the community, which took several weeks. This leaves us with a pretty small
+dependency base, which should make future maintenance / modification more
+manageable. Once we were more confident in the core codebase, we started
+focusing on how to improve the accuracy and depth of tests conducted by
+Syntribos. We used a special vulnerable API created by Matt Valdes from
+Rackspace to validate our improvements, and ensure that our tests were detecting
+the issues we introduced into the API.
 
 We spent a significant amount of time creating templates and extensions for each
 project. This typically took at least 1 or 2 days per project, significantly
@@ -67,9 +62,6 @@ Metrics
 Syntribos
 ---------
 
-- Commits: **158** [[3]]
-- Code reviews: **513** [[3]]
-- Lines committed: **24,430** [[3]]
 - Bugs reported in Launchpad: **17** [[3]]
 - Bugs resolved: **15** [[3]]
 - Unit test coverage at start: **9%**
@@ -88,10 +80,6 @@ Reported Bugs
     - Affects: keystone, cinder, neutron, glance
     - Launchpad: https://bugs.launchpad.net/keystone/+bug/1613901
 
-- **Potential information disclosure in "EC2 Credentials"**
-    - Affects: keystone
-    - Launchpad: [embargoed]
-
 - **[Duplicate] Stored XSS in glance image names**
     - Affects: horizon
     - Launchpad: https://bugs.launchpad.net/horizon/+bug/1623735
@@ -100,21 +88,28 @@ Reported Bugs
     - Affects: glance
     - Launchpad: https://bugs.launchpad.net/glance/+bug/1625402
 
+- One embargoed issue that is still being triaged
+
 Challenges
 ==========
 
 - Removing OpenCAFE took several weeks, and while it removed a large dependency,
-  it cut down on time for other improvements
-- Short testing schedule (1 month of testing for 6 projects)
+  it cut down on time for other improvements.
+- Our short testing schedule (1 month of testing for 6 projects) didn't give
+  us much time to learn the intricacies of each project, and test them at a
+  deeper, domain-specific level. Some projects offered significantly more
+  endpoints than others, and in some cases we had to move on before fully
+  evaluating every component. However, we were able to at least do some basic
+  testing on every offered endpoint for every tested service.
+    - The significant time investment required to create templates for each
+      project further limited the time we had to test these projects.
 - Lack of unit tests meant that many changes introduced bugs/crashes into
   master and required fix-ups. This happened less often as our coverage
   improved.
 - Documentation was lacking or inaccurate at the outset, and required
-  significant effort to improve
+  significant effort to improve.
 - Our team's relative inexperience with the OpenStack projects under test, and
-  security testing in general in some cases, made testing more challenging
-- Significant time investment required to create templates for each project
-
+  security testing in general in some cases, made testing more challenging.
 Syntribos Improvements / Future Plans
 =====================================
 
@@ -138,20 +133,18 @@ Planned Changes for Ocata
 - Further improving test reliability & confidence, and reducing false positives
 
 
-Members of OSIC Syntribos Team
+Members of Syntribos Team
 ==============================
 
-### Rackspace
-- Charles Neill ([Github][Charles_github])
-- Michael Dong ([Github][MD_github])
-- Michael Xin ([Github][MX_github])
-- Matt Valdes([Github][Matt_github])
+- Aastha Dixit ([Github][Aastha_github]) - Intel
+- Charles Neill ([Github][Charles_github]) - Rackspace
+- Khanak Nangia ([Github][Khanak_github]) - Intel
+- Matt Valdes([Github][Matt_github]) - Rackspace
+- Michael Dong ([Github][MD_github]) - Rackspace
+- Michael Xin ([Github][MX_github]) - Rackspace
+- Rahul Nair ([Github][Rahul_github]) - Intel
+- Vinay Potluri ([Github][Vinay_github]) - Intel
 
-### Intel
-- Rahul Nair ([Github][Rahul_github])
-- Vinay Potluri ([Github][Vinay_github])
-- Aastha Dixit ([Github][Aastha_github])
-- Khanak Nangia ([Github][Khanak_github])
 
 [1]: https://review.openstack.org/#/q/(owner:%22Rahul+U+Nair%22+OR+owner:%22Charles+Neill%22+OR+owner:%22Aastha+Dixit%22+OR+owner:%22Khanak+Nangia%22++OR+owner:%22Vinay+Potluri%22++OR+owner:%22Michael+Dong%22)+-project:openstack/syntribos
 [2]: https://review.openstack.org/#/q/(reviewer:%22Rahul+U+Nair%22+OR+reviewer:%22Charles+Neill%22+OR+reviewer:%22Aastha+Dixit%22+OR+reviewer:%22Khanak+Nangia%22++OR+reviewer:%22Vinay+Potluri%22++OR+reviewer:%22Michael+Dong%22)+-project:openstack/syntribos
@@ -167,11 +160,11 @@ Members of OSIC Syntribos Team
 [cinder]: https://github.com/openstack/cinder
 [swift]: https://github.com/openstack/swift
 
+[Aastha_github]: https://github.com/aasthadixit
 [Charles_github]: https://github.com/cneill
+[Khanak_github]: https://github.com/knangia
+[Matt_github]: https://github.com/mattvaldes
 [MD_github]: https://github.com/MCDong
 [MX_github]: https://github.com/jqxin2006
-[Matt_github]: https://github.com/mattvaldes
 [Rahul_github]: https://github.com/rahulunair/
 [Vinay_github]: https://github.com/vinaypotluri
-[Aastha_github]: https://github.com/aasthadixit
-[Khanak_github]: https://github.com/knangia
