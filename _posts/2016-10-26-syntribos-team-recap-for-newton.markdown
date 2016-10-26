@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Syntribos team recap for Newton"
-date:   2016-10-17
+date:   2016-10-26
 categories: syntribos
 tags: OSSP Python Security Syntribos
 author: "cneill @ Rackspace"
@@ -46,8 +46,7 @@ Overall, we believe we were successful in meeting our goals for this cycle,
 though we believe that more work is required to get Syntribos ready for
 production use by others in the community.
 
-Our Key Accomplishments
-=======================
+## Our Key Accomplishments
 
 - Worked to improve Syntribos tool from April 5th through September 30th
 - Participated in the OpenStack Security Project's midcycle, where we wrote
@@ -56,26 +55,21 @@ Our Key Accomplishments
 - Tested 6 OSIC key projects from August 29th through September 30th
 - Found 4 defects during our testing, and submitted them in projects' Launchpads
 
-Metrics
-=======
+## Metrics
 
-Syntribos
----------
+### Syntribos
 
 - Bugs reported in Launchpad: **17** [[3]]
 - Bugs resolved: **15** [[3]]
 - Unit test coverage at start: **9%**
 - Unit test coverage at end: **63%**
 
-OSIC Key Projects
------------------
+### OSIC Key Projects
 
 - Request templates created: **611** [[4]]
 - Bugs reported in Launchpad: **4** (see [Reported Bugs](#reported-bugs) below)
 
-Reported Bugs
-=============
-
+### Reported Bugs
 - **String "..%c0%af" causes 500 errors in multiple locations**
     - Affects: keystone, cinder, neutron, glance
     - Launchpad: https://bugs.launchpad.net/keystone/+bug/1613901
@@ -90,8 +84,7 @@ Reported Bugs
 
 - One embargoed issue that is still being triaged
 
-Challenges
-==========
+## Challenges
 
 - Removing OpenCAFE took several weeks, and while it removed a large dependency,
   it cut down on time for other improvements.
@@ -111,15 +104,13 @@ Challenges
 - Our team's relative inexperience with the OpenStack projects under test, and
   security testing in general in some cases, made testing more challenging.
 
-Syntribos Improvements / Future Plans
-=====================================
+## Syntribos Improvements / Future Plans
 
 As we performed our one-month engagement testing various OpenStack services,
 several members of the team [took notes](https://etherpad.openstack.org/p/syntribos-future)
 about features, bugs, and general improvements to be made in Syntribos.
 
-Planned Changes for Ocata
--------------------------
+### Planned Changes for Ocata
 
 - Cutting a stable Syntribos release on PyPI to reflect the many updates since
   it was last released
@@ -134,8 +125,7 @@ Planned Changes for Ocata
 - Further improving test reliability & confidence, and reducing false positives
 
 
-Members of Syntribos Team
-==============================
+## Members of Syntribos Team
 
 - Aastha Dixit ([Github][Aastha_github]) - Intel
 - Charles Neill ([Github][Charles_github]) - Rackspace
