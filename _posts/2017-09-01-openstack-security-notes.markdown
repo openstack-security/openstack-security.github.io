@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "OpenStack Security Notes, and how they help you the Operator"
-date:   2017-09-01
+date:   2017-09-08
 categories: security-notes
 tags: security notes vulnerabilities
 author: "lhinds @ Red Hat"
